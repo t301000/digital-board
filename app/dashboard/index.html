@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="flex-container flex-center-center">
+
+<div class="flex-container flex-column flex-justify-start">
+
+  <div class="flex-container flex-justify-between">
+    <h2 class="page-title">Dashboard</h2>
+    <div class="logout-btn" onclick="logout()">登出</div>
+  </div>
+
+  <div class="container flex-container">
+
+    <div class="content" id="boards">
+      <h3>我的電子看板</h3>
+      <div>
+        <input type="text" id="new-board" placeholder="看板名稱" />
+        <button type="button" id="add-board-btn" onclick="createBoard()" >新增</button>
+      </div>
+      <div id="my-boards" onclick="itemClicked(event)"></div>
+    </div>
+
+    <div class="content" id="resources" hidden>
+      <h3 id="resources-title">資源設定</h3>
+      <div>
+        <h4>簡報</h4>
+        <textarea id="slide-url" rows="5"></textarea>
+        <div class="options" id="slide-options">
+          <label onclick="setStart('slide')"><input type="checkbox" class="start" /> 自動播放</label>
+          <label onclick="setLoop('slide')"><input type="checkbox" class="loop" /> 循環播放</label>
+          <label onclick="setRm('slide')"><input type="checkbox" class="rm" /> 隱藏控制列</label>
+          <label><input type="text" class="delayms" oninput="setDelayms('slide')" /> 單頁秒數</label>
+        </div>
+        <div class="btns">
+          <button type="button" onclick="setUrl('slide')">確定</button>
+          <button type="button" onclick="reloadUrl('slide')">reload</button>
+        </div>
+      </div>
+
+      <div>
+        <h4>相片輪播</h4>
+        <textarea id="photo-url" rows="5"></textarea>
+        <div class="options" id="photo-options">
+          <label onclick="setStart('photo')"><input type="checkbox" class="start" /> 自動播放</label>
+          <label onclick="setLoop('photo')"><input type="checkbox" class="loop" /> 循環播放</label>
+          <label onclick="setRm('photo')"><input type="checkbox" class="rm" /> 隱藏控制列</label>
+          <label><input type="text" class="delayms" oninput="setDelayms('photo')" /> 單頁秒數</label>
+        </div>
+        <div class="btns">
+          <button type="button" onclick="setUrl('photo')">確定</button>
+          <button type="button" onclick="reloadUrl('photo')">reload</button>
+        </div>
+      </div>
+
+      <div>
+        <h4>YouTube 播放清單</h4>
+        <textarea id="youtube-playlist" rows="1"></textarea>
+        <div class="btns">
+          <button type="button" onclick="setUrl('playlist')">確定</button>
+          <button type="button" onclick="reloadUrl('playlist')">reload</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="msg" hidden></div>
+
+  </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-auth.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-database.js"></script>-->
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-messaging.js"></script>-->
+
+<script src="../config.js"></script>
+<script src="../utils.js"></script>
+<script src="resources-manage.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>電子看板</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="flex-container flex-center-center">
+<!-- 尺寸切換，暫時用 -->
+<input id="toggle" type="checkbox"></input>
+
+<!-- 主要畫面，電子看板 -->
+<div id="main" class="app-container">
+  <!-- 遮住整個 container ，避免滑鼠點擊造成播放停止 -->
+  <!--<div class="mask"></div>-->
+
+  <div id="area1">
+    <!--
+      // 簡報
+      start       自動開始播放
+      loop        循環播放
+      delayms     換頁時間(ms)
+      rm=minimal  隱藏控制列
+     -->
+    <iframe
+      src=""
+      frameborder="0"
+      allowfullscreen="true"
+      mozallowfullscreen="true"
+      webkitallowfullscreen="true"
+      id="slide">
+    </iframe>
+  </div>
+
+  <div id="area2">
+    <!--
+      // Youtube 影片
+      // https://developers.google.com/youtube/player_parameters
+      autoplay    自動開始播放
+      loop        循環播放
+      list        播放清單id
+      controls    隱藏控制列
+      showinfo    顯示資訊(html5 player 似乎沒作用)
+      mute        靜音
+     -->
+    <iframe
+      src=""
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      id="playlist">
+    </iframe>
+  </div>
+
+  <div id="area3">
+    <!--
+      // 時間
+      http://naozhong.tw/shijian/台北/
+      or
+      https://www.zeitverschiebung.net/en/clock-widget?timezone=Asia/Taipei&type=country&id=TW
+     -->
+    
+    <div class="info">
+
+      <div id="time">
+        <!--<iframe-->
+          <!--src="https://naozhong.tw/embed/shijian/台北/#theme=1&ampm=1&showdate=1"-->
+          <!--frameborder="0"-->
+          <!--allowfullscreen>-->
+        <!--</iframe>-->
+        <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=large&timezone=Asia%2FTaipei" frameborder="0" seamless></iframe>
+      </div>
+      
+      <div id="weather">
+        <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/25d02121d46/new-taipei-city/"
+           data-label_1="新北市" data-font="Noto Sans TC" data-icons="Climacons Animated" data-days="3" data-theme="dark" >新北市</a>
+        <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+      </div>
+
+    </div>
+  
+    
+  </div>
+
+  <div id="area4">
+	<!--
+      // 照片簡報
+      start       自動開始播放
+      loop        循環播放
+      delayms     換頁時間(ms)
+      rm=minimal  隱藏控制列
+     -->
+	<iframe
+      src=""
+      frameborder="0"
+      allowfullscreen="true"
+      mozallowfullscreen="true"
+      webkitallowfullscreen="true"
+      id="photo">
+    </iframe>
+  </div>
+  
+  <div id="area5"></div>
+  
+</div>
+
+<!-- 選擇電子看板 -->
+<div id="select" hidden>
+  <h2>選擇電子看板</h2>
+  <select></select>
+  <br />
+  <button onclick="setBoard()" disabled>確定</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-app.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-auth.js"></script>-->
+<!--<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-database.js"></script>-->
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-messaging.js"></script>-->
+
+<script src="config.js"></script>
+<script src="utils.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

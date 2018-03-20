@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2b2b2b;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+/* flex 水平垂直 置中 */
+.flex-center-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-justify-start {
+    justify-content: flex-start;
+}
+
+.flex-justify-between {
+    justify-content: space-between;
+}
+
+.flex-align-start {
+    align-items: flex-start;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+.text-info {
+    color: #3fc8ff;
+}
+
+.text-success {
+    color: chartreuse;
+}
+
+.text-error {
+    color: #ff2864;
+}
+
+.text-align-center {
+    text-align: center;
+}

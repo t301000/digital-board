@@ -1,0 +1,7 @@
+.idea/
+\.firebaserc
+
+app/404\.html
+
+firebase\.json
+app/config.js

@@ -1,0 +1,104 @@
+.container {
+  width: 800px;
+  height: 800px;
+  padding: 30px;
+  background-color: #3f3f3f;
+  color: #fff2cb;
+  position: relative;
+}
+
+#msg {
+  position: absolute;
+  top: 20px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff3951;
+}
+
+#my-boards {
+  margin-top: 30px;
+}
+
+.page-title {
+  color: beige;
+}
+
+.content {
+  padding: 0 10px;
+}
+
+#boards {
+  width: 40%;
+}
+
+#resources {
+  width: 60%;
+}
+
+.list-item {
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item:hover {
+  background-color: gray;
+}
+
+.list-item-label {
+  cursor: pointer;
+}
+
+.tools {
+  margin-right: 20px;
+}
+
+.tools:hover {
+  cursor: pointer;
+}
+
+input[type=text], button {
+  height: 40px;
+  padding: 5px;
+}
+
+.logout-btn {
+  color: #fff2cb;
+  cursor: pointer;
+  border: #fff2cb solid 1px;
+  padding: 10px;
+  align-self: center;
+  letter-spacing: 2px;
+}
+
+.logout-btn:hover {
+  background-color: rgba(53, 135, 234, 0.41);
+}
+
+textarea {
+  width: 100%;
+  padding: 5px;
+}
+
+input.delayms {
+  width: 30px;
+  height: initial;
+  padding: initial;
+}
+
+input#youtube-playlist {
+  width: 100%;
+}
+
+.btns {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.btns button {
+  width: 100px;
+  margin-right: 20px;
+}
