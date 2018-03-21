@@ -5,14 +5,17 @@
 1. 使用 chrome 全螢幕呈現
 1. 可展示素材：google 簡報、YouTube 播放清單
 
-# 安裝
+# 設定與安裝
 1. 複製 app/config.sample.js 為 app/config.js
-1. 登入 [firebase](https://firebase.google.com) 並新增一專案，資料庫選擇 firestore
+1. 登入 [firebase](https://firebase.google.com) 並新增一專案，資料庫選擇 firestore，以測試模式啟動
 1. 取得專案設定值，填入 app/config.js
 1. 瀏覽 /install，建立帳號
 1. 瀏覽 /login，登入後即可建立看板
+1. 建議將 install 資料夾刪除
 
 # firestore 規則設定
+
+由於一開始使用測試模式啟動，任何人都可以讀寫資料庫，因此安裝完成後要將以下規則寫入並發佈
 
 ```
 service cloud.firestore {
@@ -20,7 +23,7 @@ service cloud.firestore {
     
     match /boards/{board} {
       // 開放讀取
-    	allow read;
+      allow read;
       // 只有對該 board 有管理權者才能寫入
       allow write: if (request.auth.uid !=null) && exists(/databases/$(database)/documents/users/$(request.auth.uid)/boards/$(board));
       
@@ -32,10 +35,10 @@ service cloud.firestore {
     
     match /users/{uid} {
       // 只有 user 能讀寫自己的 document
-    	allow read, write: if request.auth.uid == uid;
+      allow read, write: if request.auth.uid == uid;
       
       match /{document=**} {
-      	allow read, write: if request.auth.uid == uid;
+        allow read, write: if request.auth.uid == uid;
       }
     }
     
