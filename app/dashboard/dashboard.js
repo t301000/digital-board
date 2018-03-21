@@ -80,7 +80,7 @@ function createBoard() {
   if (!boardName) return;
 
   const newDocRef =db.collection('boards').doc(); // no path, auto generated unique id returned
-  const payload = {name: boardName, active: false};
+  const payload = {name: boardName, active: true};
 
   // 因為 firestore 的 write rule 的設定條件，因此新增之順序如下
   // 先在 user document 的 boards 子集合新增 看板 document
