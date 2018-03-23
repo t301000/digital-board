@@ -43,18 +43,24 @@ function initResources(board) {
 }
 
 function initUrls(snapshot) {
-
+  // 先清空
+  clearAllFieldAndOptions();
+  
+  // 如果是空的 collection 則停止
   if (snapshot.empty) {
-    clearAllFieldAndOptions();
     hideMsg(msgBlock, 500);
     return;
   }
-
+  
+  // 取得 urls collection 中的 docs
   const urlDocs = snapshot.docs;
 
   urlDocs.forEach(doc => {
     urlFields[doc.id].value = doc.data().url;
-    initOptions(doc);
+    if (doc.id === 'slide' || doc.id === 'photo') {
+      const queryString = doc.data().url.split('?')[1];
+      initOptions(doc.id, queryString);
+    }
   });
 
   hideMsg(msgBlock, 500);
@@ -83,15 +89,14 @@ function initUrls(snapshot) {
   }
 
   // 依原參數初始化選項欄位值
-  function initOptions(doc) {
-    let options = (doc.data()).url.split('?')[1];
-    // playlist 時 options 為 undefined，略過
-    if (options) {
-      // 由字串轉換為物件，布林值與數字會變成字串
-      options = getOptionsObj(options);
-    }
+  function initOptions(type, queryString) {
+    // queryString 為 undefined 時略過
+    if (!queryString) return;
+    
+    // 由字串轉換為物件，布林值與數字會變成字串
+    const options = getOptionsObj(queryString);
 
-    switch (doc.id) {
+    switch (type) {
       case 'slide':
         setOptions(slideOptions, options);
         break;

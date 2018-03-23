@@ -117,16 +117,22 @@ function deleteBoard(e) {
 
   // 因為 firestore 的 write rule 的設定條件，因此刪除之順序如下(與新增相反)
   // 先刪 boards 集合的 document
-  db.collection('boards')
-      .doc(id)
-      .delete()
-      .then(() => userBoardsRef.doc(id).delete()) // 再刪 user document 的 boards 子集合的看板 document
-      .then(() => {
-        resetCurrentBoard(id);
-        console.log('after delete, current = ', currentBoard);
-        hideMsg(msgBlock, 0);
-      })
-      .catch(consoleLogError);
+  const urlsRef = db.collection(`boards/${id}/urls`);
+  urlsRef
+    .get()
+    .then(snapshot => {
+      const promises = [];
+      snapshot.forEach(doc => promises.push(urlsRef.doc(doc.id).delete()));
+      return Promise.all(promises);
+    })
+    .then(() => db.collection('boards').doc(id).delete())
+    .then(() => userBoardsRef.doc(id).delete()) // 再刪 user document 的 boards 子集合的看板 document
+    .then(() => {
+      resetCurrentBoard(id);
+      console.log('after delete, current = ', currentBoard);
+      hideMsg(msgBlock, 0);
+    })
+    .catch(consoleLogError);
   
   console.log('before delete, current = ', currentBoard);
 }
