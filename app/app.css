@@ -62,6 +62,10 @@ input#toggle:checked+.app-container {
 #area5 {
     grid-column: 4 / 8;
     grid-row: 5 / 7;
+    /*background-image: url("https://firebasestorage.googleapis.com/v0/b/digital-board-yljh.appspot.com/o/00_%E6%95%99%E5%8B%99%E8%99%95.jpg?alt=media");*/
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .info {
