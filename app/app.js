@@ -103,3 +103,17 @@ function loadImage(url) {
     imgBlock.style.backgroundImage = `url("${url}")`;
   }
 }
+
+function reload(resourceType) {
+  switch (resourceType) {
+    case 'slide':
+      setIframe(resourceType, slideIframe.src);
+      break;
+    case 'photo':
+      setIframe(resourceType, photoIframe.src);
+      break;
+    case 'playlist':
+      playlistIframe.setAttribute('src', playlistIframe.src);
+      break;
+  }
+}
