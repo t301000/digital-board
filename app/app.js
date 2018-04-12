@@ -7,6 +7,8 @@ const selectElm = document.querySelector('select');
 const slideIframe = document.getElementById('slide');
 const photoIframe = document.getElementById('photo');
 const playlistIframe = document.getElementById('playlist');
+// 圖片區塊
+const imgBlock = document.getElementById('area5');
 
 // 載入內容
 loadContentOrSelect();
@@ -69,6 +71,8 @@ function loadDigitalBoard(board) {
       }
     )
   );
+  // 載入圖片
+  loadImage(imgUrl);
 }
 
 // 設定各 iframe 的 src attribute
@@ -91,4 +95,11 @@ function setIframe(resourceType, url) {
 function setBoard() {
   localStorage.setItem('board', selectElm.value);
   loadContentOrSelect();
+}
+
+// 載入圖片
+function loadImage(url) {
+  if (url) {
+    imgBlock.style.backgroundImage = `url("${url}")`;
+  }
 }

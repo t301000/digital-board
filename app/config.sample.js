@@ -7,3 +7,5 @@ const config = {
   storageBucket: "",
   messagingSenderId: ""
 };
+
+const imgUrl = '';
