@@ -81,7 +81,7 @@ function setIframe(resourceType, url) {
       photoIframe.setAttribute('src', url);
       break;
     case 'playlist':
-      let preUrl = 'https://www.youtube.com/embed/videoseries?autoplay=1&loop=1&controls=0&showinfo=1&mute=0&cc_load_policy=1&list=';
+      let preUrl = 'https://www.youtube.com/embed/videoseries?autoplay=1&loop=1&controls=0&showinfo=1&mute=0&cc_load_policy=1&VQ=HD720&list=';
       playlistIframe.setAttribute('src', preUrl + url);
       break;
   }
