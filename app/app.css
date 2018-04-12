@@ -37,6 +37,7 @@ input#toggle:checked+.app-container {
 #area2 {
   grid-column: 8 / 13;
   grid-row: 1 / 4;
+  align-self: center;
 }
 
 #area3 {
@@ -62,6 +63,9 @@ input#toggle:checked+.app-container {
 #area5 {
   grid-column: 4 / 8;
   grid-row: 5 / 7;
+  background-size: 60% 60%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .info {
