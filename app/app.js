@@ -1,6 +1,6 @@
 // 取得功能區塊
-const selectBlock = document.getElementById('select');
-const mainBlock = document.getElementById('main');
+const selectBlock = document.querySelector('#select'); //getElementById('select');
+const mainBlock = document.querySelector('#main'); //getElementById('main');
 // 看板選單
 const selectElm = document.querySelector('select');
 // 取得 iframe
@@ -8,7 +8,7 @@ const slideIframe = document.getElementById('slide');
 const photoIframe = document.getElementById('photo');
 const playlistIframe = document.getElementById('playlist');
 // 圖片區塊
-const imgBlock = document.getElementById('area5');
+const imgBlock = document.querySelector('.area5'); //getElementById('area5');
 
 // 載入內容
 loadContentOrSelect();
@@ -62,10 +62,11 @@ function loadDigitalBoard(board) {
       change => {
         const resourceType = change.doc.id;
         const url = (change.doc.data()).url;
+        const fullscreen = (change.doc.data()).fullscreen;
         switch (change.type) {
           case 'added': // for 新增或第一次載入
           case 'modified': // for 修改
-            setIframe(resourceType, url);
+            setIframe(resourceType, url, fullscreen);
             break;
         }
       }
@@ -76,18 +77,30 @@ function loadDigitalBoard(board) {
 }
 
 // 設定各 iframe 的 src attribute
-function setIframe(resourceType, url) {
+function setIframe(resourceType, url, fullscreen = false) {
+  if (! url) return false;
+
+  let targetIframe = null;
   switch (resourceType) {
     case 'slide':
       slideIframe.setAttribute('src', url);
+      targetIframe = slideIframe;
       break;
     case 'photo':
       photoIframe.setAttribute('src', url);
+      targetIframe = photoIframe;
       break;
     case 'playlist':
       let preUrl = 'https://www.youtube.com/embed/videoseries?autoplay=1&loop=1&controls=0&showinfo=1&mute=0&cc_load_policy=1&VQ=HD720&list=';
       playlistIframe.setAttribute('src', preUrl + url);
+      targetIframe = playlistIframe;
       break;
+  }
+
+  if (fullscreen) {
+    targetIframe.parentElement.parentElement.classList.add('fullscreen');
+  } else {
+    targetIframe.parentElement.parentElement.classList.remove('fullscreen');
   }
 }
 
